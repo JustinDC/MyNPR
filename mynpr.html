@@ -7,27 +7,34 @@
     <p id="hello">Querying npr program "All Things Considered"<br>
       <br>Query: 'http://api.npr.org/query?id=1013,2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001'<br><br>
     First episode:</p>
-    <audio controls src="http://pd.npr.org/anon.npr-mp3/npr/atc/2014/10/20141012_atc_to_cut_student_debt_florida_college_cuts_off_some_student_borrowing.mp3" autoplay>
+    <audio controls src="http://pd.npr.org/anon.npr-mp3/npr/atc/2014/10/20141012_atc_to_cut_student_debt_florida_college_cuts_off_some_student_borrowing.mp33" autoplay>
   Your browser does not support the <code>audio</code> element.
 </audio>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script>
-    $.get('http://api.npr.org/query?id=1013,2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
+    $.get('http://api.npr.org/query?dateType=story&output=NPRML&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001&numResults=50&id=1006&startNum=20000', getnpr);
     function getnpr(nprml) {
-      var $xml = $(nprml);
-      console.log(nprml);
-      $("#hi").html($($xml.find("mp3")[0]).text());
-      // document.getElementById('asdf').src = $($xml.find("mp3")[0]).text();
-      // document.getElementById('player').pause();
-      // document.getElementById('player').load();
-      // document.getElementById('player').play();
-      console.log(document.getElementById('asdf').src);
-      // var xmlDoc = $.parseXML(nprml);
-      // var $xml = $( xmlDoc );
-      // $title = $xml.find("58");
-      // console.log($title.text());
+      //console.log(nprml);
+      var x=nprml.getElementsByTagName('story');
+    }
+  </script>
+  <script>
+    var base = 'http://api.npr.org/query?dateType=story&output=NPRML&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001&numResults=50&id=46&startNum=';
+    var currStart = 0;
+    $.get(base + currStart, isEnd);
+    function isEnd(nprml) {
+      var stories = nprml.getElementsByTagName('story').length;
+      if (stories == 50) {
+        console.log('workin...');
+        currStart += 1000;
+        $.get(base + currStart, isEnd);
+      }
+      else {
+        document.write('approximately ' + currStart + '\nStories: ' + stories);
+
+      }
     }
   </script>
 
