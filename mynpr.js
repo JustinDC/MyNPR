@@ -27,6 +27,7 @@ var getnpr = function(nprml) {
 		var mp3 = $(story).find('mp3');
 		if (mp3.length == 1) { //viable story, has an mp3 file
 			var storyObject = {};
+			storyObject.mp3 = $(mp3).text();
 			storyObject.title = $($(story).find('title')[0]).text();
 			storyObject.duration = $($(story).find('duration')[0]).text();
 			var topics = [];
@@ -60,21 +61,37 @@ var getnpr = function(nprml) {
 				relatedLinks.push(relatedLink);
 			}
 			storyObject.relatedLinks = relatedLinks;
-			console.log(story);
-			console.log(storyObject);
+			storyObjects.push(storyObject);
+
+
+			//console.log(story);
+			//console.log(storyObject);
 			//console.log($($(story).find('parent')[0]).attr('type'));
 			//console.log($($(story).find('parent')[0]).attr('id'));
 			//console.log(storyObject);
 		}
 	}
+
+	//TODO: of the stories, pick one, based on the algorithm
+	var theStory = storyObjects[0];
+	$.get(theStory.mp3, processm3u(theStory));
+	//processm3u(theStory);
 }
 
-var processm3u = function(m3u) {
-	var playlist = M3U.parse(m3u);
-	console.log(playlist[0].file);
+var processm3u = function(story) {
+	return function(data, textStatus, jqXHR) {
+			story.mp3link = data;
+      console.log(story);
+    };
+}
+/*
+var processm3u = function(story) {
+	console.log(story.mp3);
+	var playlist = M3U.parse(story.mp3);
+	//console.log(playlist[0].file);
 }
 
-
+*/
 //index can be a singular index, like '1149' or multiple, delimited by commas:
 //such as '1149, 1150'
 var getStories = function(index, numResults) {
