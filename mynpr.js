@@ -1,6 +1,23 @@
+var prefs = [
+{id: "1006", pref: 0.5}, //economy
+{id: "1017", pref: 0.5}, //business
+];
+
 
 var main = function() {
-    $.get('http://api.npr.org/query?id=1149&numResults=2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
+    //$.get('http://api.npr.org/query?id=1149&numResults=2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
+    nextStory();
 }
 
 var getnpr = function(nprml) {
@@ -63,17 +80,14 @@ var getnpr = function(nprml) {
 			storyObject.relatedLinks = relatedLinks;
 			storyObjects.push(storyObject);
 
-
-			//console.log(story);
-			//console.log(storyObject);
-			//console.log($($(story).find('parent')[0]).attr('type'));
-			//console.log($($(story).find('parent')[0]).attr('id'));
-			//console.log(storyObject);
 		}
 	}
 
+	//TODO: what if storyObjects.length == 0?
+		//return an "error" storyObject?
 	//TODO: of the stories, pick one, based on the algorithm
-	var theStory = storyObjects[0];
+	var choice = Math.floor(Math.random() * storyObjects.length);
+	var theStory = storyObjects[choice];
 	$.get(theStory.mp3, processm3u(theStory));
 	//processm3u(theStory);
 }
@@ -84,14 +98,37 @@ var processm3u = function(story) {
       console.log(story);
     };
 }
+
 /*
-var processm3u = function(story) {
-	console.log(story.mp3);
-	var playlist = M3U.parse(story.mp3);
-	//console.log(playlist[0].file);
+signal:
+0: thumbs up
+1: thumbs down
+2: skip
+3: play to completion
+*/
+var feedback = function(story, signal) {
+
 }
 
-*/
+var nextStory = function() {
+	var total = 0;
+	for (var i = 0; i < prefs.length; i++) {
+		total += prefs[i].pref;
+	}
+	var rand = Math.random()*total;
+	var choice;
+	var curr = 0;
+	for (var i = 0; !choice; i++) {
+		if (curr + prefs[i].pref > rand) { // hit the thing.
+			choice = prefs[i].id;
+		}
+		else {
+			curr += prefs[i].pref;
+		}
+	}
+	getStories(choice, 20);
+}
+
 //index can be a singular index, like '1149' or multiple, delimited by commas:
 //such as '1149, 1150'
 var getStories = function(index, numResults) {
