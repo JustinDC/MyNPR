@@ -1,10 +1,16 @@
 better categorization scheme
+	incorporate categories
 
 make ui better
 
 local storage
 
 make algorithm smarter
+	smarter response to feedback
+	avoid repeating
+	for newsy topics, get from most recent 20
+	otherwise, pick from a random range
+		scan ALL topics maybe, to determine whether its newsy or not?
 
 fix thumbs up and report feedback only at end of story and autoplay
 
