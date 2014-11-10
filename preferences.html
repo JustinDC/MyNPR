@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;" />
+        <meta name="MobileOptimized" content="width" />
+        <meta name="HandheldFriendly" content="true" />
+        <link href="player.css" rel="stylesheet"/>
+        <link rel='stylesheet' href='typicons/typicons.min.css'/>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,100' rel='stylesheet' type='text/css'>
+        <script src="jquery/jquery-1.11.0.min.js"></script>
+        <script src="parser.min.js"></script>
+        <script src="xml2json.js"></script>
+        <script src="player.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="header_nav header_navLeft"><span class="typcn typcn-arrow-left"></span></div>
+            <div id="header_title">Preferences</div>
+            <div class="header_nav header_navRight"><span class="typcn typcn-arrow-right"></span></div>
+        </div>
+        <div id="queue">
+            <div class="queue_header"><span>Upcoming</span></div>
+            <div class="queue_item"><span>Test 1</span></div>
+            <div class="queue_item"><span>Test 2</span></div>
+            <div class="queue_item"><span>Test 3</span></div>
+            <div class="queue_item"><span>Test 4</span></div>
+            <div class="queue_item"><span>Test 5</span></div>
+        </div>
+        <div id="player">
+            <audio id="player_audio" src="http://pd.npr.org/anon.npr-mp3/npr/atc/2014/10/20141012_atc_to_cut_student_debt_florida_college_cuts_off_some_student_borrowing.mp3"></audio>
+            <div id="player_bar">
+                <div id="player_LoadedBar">Current News</div><div id="player_ProgressBar"></div>
+            </div>
+            <div id="player_controls">
+                <a class="player_btn"><span class="typcn typcn-thumbs-down"></span></a>
+                <a class="player_btn"><span class="typcn typcn-thumbs-up"></span></a>
+                <a class="player_btn"><span class="typcn typcn-media-rewind" onclick="clickedRewind()"></span></a>
+                <a class="player_btn" id="player_btnPlay"><span class="typcn typcn-media-play" onclick="clickedPlay()"></span></a>
+                <a class="player_btn"><span class="typcn typcn-media-fast-forward" onclick="clickedForward()"></span></a>
+            </div>
+        </div>
+    </body>
+</html>

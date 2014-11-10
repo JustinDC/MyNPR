@@ -1,6 +1,7 @@
 
 var main = function() {
     $.get('http://api.npr.org/query?id=1149&numResults=2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
+    $.get('http://api.npr.org/query?id=1149&numResults=2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
 }
 
 var getnpr = function(nprml) {
@@ -80,8 +81,8 @@ var getnpr = function(nprml) {
 
 var processm3u = function(story) {
 	return function(data, textStatus, jqXHR) {
-			story.mp3link = data;
-      console.log(story);
+	story.mp3link = data;
+        addStoryToUI(story);
     };
 }
 /*
