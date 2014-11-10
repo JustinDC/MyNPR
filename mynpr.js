@@ -100,7 +100,16 @@ signal:
 3: play to completion
 */
 var feedback = function(story, signal) {
+	var topic = story.primaryTopic;
+	var prefsIndex;
+	for(var i = 0; i < prefs.length && !prefsIndex; i++) {
+		if (prefs[i].id == topic.toString())
+			prefsIndex = i;
+	}
+	//TODO: prefsIndex not found
+	var val = prefs[prefsIndex].pref;
 
+	console.log(val);
 }
 
 var nextStory = function() {
