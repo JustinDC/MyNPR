@@ -26,7 +26,7 @@ function clickedPause() {
 };
 
 function clickedForward() {
-    feedback(storyQueue[0],-.1);
+    feedback(storyQueue[0], 0);
     storyQueue.shift();
     var audio = document.getElementById("player_audio");
     audio.src = storyQueue[0].mp3link;
