@@ -1,0 +1,15 @@
+better categorization scheme
+
+make ui better
+
+local storage
+
+make algorithm smarter
+
+fix thumbs up and report feedback only at end of story and autoplay
+
+Add robustness code for the following cases: (kind of optional, since we're just making
+a demo)
+	-User clicks next story too fast
+	-internet problems
+The solution is probably to spam requests, every 1,2,4,8s, kind of like how other apps deal with loss of connectivity.
