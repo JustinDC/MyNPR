@@ -102,9 +102,12 @@ signal:
 var feedback = function(story, signal) {
 	var topic = story.primaryTopic;
 	var prefsIndex;
-	for(var i = 0; i < prefs.length && !prefsIndex; i++) {
-		if (prefs[i].id == topic.toString())
+	var done = false;
+	for(var i = 0; i < prefs.length && !done; i++) {
+		if (prefs[i].id == topic.toString()) {
 			prefsIndex = i;
+			done = true;
+		}
 	}
 	//TODO: prefsIndex not found
 	var val = prefs[prefsIndex].pref;
