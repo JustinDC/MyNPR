@@ -26,18 +26,32 @@ function clickedPause() {
 };
 
 function clickedForward() {
+    feedback(storyQueue[0],-.1);
     storyQueue.shift();
     var audio = document.getElementById("player_audio");
     audio.src = storyQueue[0].mp3link;
     audio.load(); audio.play();
     $("#player_btnPlay").html("<span class=\"typcn typcn-media-pause\" onclick=\"clickedPause()\"></span>");
-    $.get('http://api.npr.org/query?id=1149&numResults=2&apiKey=MDE2OTQ2ODMxMDE0MTI1NDIzODY0YjNiMg001', getnpr);
-    console.log(storyQueue);
+    nextStory();
 };
 
 function clickedRewind() {
     var audio = document.getElementById("player_audio");
     audio.currentTime -= 10;
+};
+
+function clickedThumbsUp() {
+    feedback(storyQueue[0],.2);
+};
+
+function clickedThumbsDown() {
+    feedback(storyQueue[0],-.2);
+    storyQueue.shift();
+    var audio = document.getElementById("player_audio");
+    audio.src = storyQueue[0].mp3link;
+    audio.load(); audio.play();
+    $("#player_btnPlay").html("<span class=\"typcn typcn-media-pause\" onclick=\"clickedPause()\"></span>");
+    nextStory();
 };
 
 function addStoryToUI(story) {
