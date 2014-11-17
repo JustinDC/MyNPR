@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-var storyQueue = [];
 var thumbsUp = 0;
 
 $(document).ready(function() {

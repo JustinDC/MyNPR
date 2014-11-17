@@ -1,16 +1,46 @@
-var prefs = [
-{id: "1006", pref: 0.5}, //economy
-{id: "1045", pref: 0.5}, //movies
-];
-
+var prefs;
+var storyQueue;
 
 var main = function() {
-    nextStory();
-    nextStory();
-    nextStory();
-    nextStory();
-    nextStory();
-    nextStory();
+	prefs = JSON.parse(localStorage.getItem('prefs'));
+	if (!prefs) { //first time usage
+		prefs = [
+		{id: "1006", pref: 0.5}, //economy
+		{id: "1045", pref: 0.5}, //movies
+		];
+		//TODO: show popup
+	}
+
+	storyQueue = JSON.parse(localStorage.getItem('storyQueue'));
+	if (!storyQueue) { //first time usage
+		storyQueue = [];
+	  nextStory();
+	  nextStory();
+	  nextStory();
+	  nextStory();
+	  nextStory();
+	  nextStory();
+	}
+	else {
+		var audio = document.getElementById("player_audio");
+    audio.src = storyQueue[0].mp3link;
+    audio.load();
+    $("#news0").html(storyQueue[0].title);
+    $("#news1").html(storyQueue[1].title);
+    $("#news2").html(storyQueue[2].title);
+    $("#news3").html(storyQueue[3].title);
+    $("#news4").html(storyQueue[4].title);
+    $("#news5").html(storyQueue[5].title);
+	}
+}
+
+var exit = function() {
+	if (prefs) {
+		localStorage.setItem('prefs', JSON.stringify(prefs));
+	}
+	if (storyQueue) {
+			localStorage.setItem('storyQueue', JSON.stringify(storyQueue));
+	}
 }
 
 var getnpr = function(queryTopic) {
@@ -80,11 +110,23 @@ var getnpr = function(queryTopic) {
 
 		//TODO: what if storyObjects.length == 0?
 			//return an "error" storyObject?
-		//TODO: of the stories, pick one, based on the algorithm
-		var choice = Math.floor(Math.random() * storyObjects.length);
+
+
+		//TODO: improve how selection works.
+		var found = false;
+		var choice;
+		
+		while (!found) {
+			choice = Math.floor(Math.random() * storyObjects.length);
+			found = true;
+			for (var i = 0; i < 6; i++) {
+				if (storyQueue[i] && storyObjects[choice].title == storyQueue[i].title)
+					found = false;
+			}
+		}
+		
 		var theStory = storyObjects[choice];
 		$.get(theStory.mp3, processm3u(theStory));
-		//processm3u(theStory);
 	}
 }
 
@@ -145,3 +187,4 @@ var getStories = function(index, numResults) {
 }
 
 window.addEventListener("load", main);
+window.addEventListener("beforeunload", exit);
