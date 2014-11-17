@@ -12,6 +12,17 @@ $(document).ready(function() {
     audio.addEventListener('timeupdate',function (){
         $("#player_ProgressBar").width(audio.currentTime*100/audio.duration+"%");
     });
+    audio.addEventListener('ended',function (){
+        feedback(storyQueue[0], 1+thumbsUp);
+        thumbsUp = 0;
+        $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" onclick=\"clickedLike_TurnOn()\"></span>");
+        storyQueue.shift();
+        nextStory();
+        var audio = document.getElementById("player_audio");
+        audio.src = storyQueue[0].mp3link;
+        audio.load(); audio.play();
+        $("#player_btnPlay").html("<span class=\"typcn typcn-media-pause\" onclick=\"clickedPause()\"></span>");
+    });
 });
 
 function clickedPlay() {
@@ -28,6 +39,8 @@ function clickedPause() {
 
 function clickedForward() {
     feedback(storyQueue[0], 0+thumbsUp);
+    thumbsUp = 0;
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" onclick=\"clickedLike_TurnOn()\"></span>");
     storyQueue.shift();
     nextStory();
     var audio = document.getElementById("player_audio");
@@ -43,21 +56,23 @@ function clickedRewind() {
 
 function clickedLike_TurnOn() {
     thumbsUp = 0.2;
-    $("#player_btnLike").html("<span class=\"typcn typcn-arrow-up-thick\" onclick=\"clickedLike_TurnOff()\"></span>");
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" style=\"color:#E66916; background: white; border-radius: 10px; overflow: hidden;\" onclick=\"clickedLike_TurnOff()\"></span>");
 };
 function clickedLike_TurnOff() {
     thumbsUp = 0;
-    $("#player_btnLike").html("<span class=\"typcn typcn-arrow-up-outline\" onclick=\"clickedLike_TurnOn()\"></span>");
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" onclick=\"clickedLike_TurnOn()\"></span>");
 };
 
 function clickedDislike() {
     feedback(storyQueue[0],-.2);
+    thumbsUp = 0;
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" onclick=\"clickedLike_TurnOn()\"></span>");
     storyQueue.shift();
+    nextStory();
     var audio = document.getElementById("player_audio");
     audio.src = storyQueue[0].mp3link;
     audio.load(); audio.play();
     $("#player_btnPlay").html("<span class=\"typcn typcn-media-pause\" onclick=\"clickedPause()\"></span>");
-    nextStory();
 };
 
 function addStoryToUI(story) {

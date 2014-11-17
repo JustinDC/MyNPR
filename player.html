@@ -29,11 +29,11 @@ and open the template in the editor.
         </div>
         <div id="queue">
             <div class="queue_header"><span>Upcoming</span></div>
-            <div id="news5" class="queue_item"><span>Loading...</span></div>
-            <div id="news4" class="queue_item"><span>Loading...</span></div>
-            <div id="news3" class="queue_item"><span>Loading...</span></div>
-            <div id="news2" class="queue_item"><span>Loading...</span></div>
-            <div id="news1" class="queue_item"><span>Loading...</span></div>
+            <div class="queue_item"><span id="news5" class="queue_itemText">Loading...</span></div>
+            <div class="queue_item"><span id="news4" class="queue_itemText">Loading...</span></div>
+            <div class="queue_item"><span id="news3" class="queue_itemText">Loading...</span></div>
+            <div class="queue_item"><span id="news2" class="queue_itemText">Loading...</span></div>
+            <div class="queue_item"><span id="news1" class="queue_itemText">Loading...</span></div>
         </div>
         <div id="player">
             <audio id="player_audio"></audio>
@@ -41,8 +41,8 @@ and open the template in the editor.
                 <div id="player_LoadedBar"><div id="news0">Loading...</div></div><div id="player_ProgressBar"></div>
             </div>
             <div id="player_controls">
-                <a class="player_btn"><span class="typcn typcn-arrow-down-outline" onclick="clickedDislike()"></span></a>
-                <a class="player_btn" id="player_btnLike"><span class="typcn typcn-arrow-up-outline" onclick="clickedLike_TurnOn()"></span></a>
+                <a class="player_btn"><span class="typcn typcn-thumbs-down" onclick="clickedDislike()"></span></a>
+                <a class="player_btn" id="player_btnLike"><span class="typcn typcn-thumbs-up" onclick="clickedLike_TurnOn()"></span></a>
                 <a class="player_btn"><span class="typcn typcn-media-rewind" onclick="clickedRewind()"></span></a>
                 <a class="player_btn" id="player_btnPlay"><span class="typcn typcn-media-play" onclick="clickedPlay()"></span></a>
                 <a class="player_btn"><span class="typcn typcn-media-fast-forward" onclick="clickedForward()"></span></a>
