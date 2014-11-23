@@ -1,11 +1,37 @@
 var storyQueue;
+var firstTime;
 
 var main = function() {
+        firstTime = JSON.parse(localStorage.getItem('firstTime'));
+        if (!firstTime) {
+            $("#prefModal").show();
+            firstTime = true;
+        }
+        
 	prefs = JSON.parse(localStorage.getItem('prefs'));
 	if (!prefs) { //first time usage
 		prefs = [
-		{id: "1006", pref: 0.5, topic: "Economy", checked: false}, //economy
-		{id: "1045", pref: 0.5, topic: "Movies", checked: false}, //movies
+		{id: "1003", pref: 0.5, topic: "U.S. News", checked: false},
+                {id: "1004", pref: 0.5, topic: "World News", checked: false},
+                {id: "1014", pref: 0.5, topic: "Politics", checked: false},
+                {id: "1006", pref: 0.5, topic: "Business", checked: false},
+                {id: "1019", pref: 0.5, topic: "Technlogy", checked: false},
+                {id: "1007", pref: 0.5, topic: "Science", checked: false},
+                {id: "1128", pref: 0.5, topic: "Health", checked: false},
+                {id: "1013", pref: 0.5, topic: "Education", checked: false},
+                {id: "1032", pref: 0.5, topic: "Books", checked: false},
+                {id: "1045", pref: 0.5, topic: "Movies", checked: false},
+                {id: "1048", pref: 0.5, topic: "Pop Culture", checked: false},
+                {id: "1053", pref: 0.5, topic: "Food", checked: false},
+                {id: "1047", pref: 0.5, topic: "Art & Design", checked: false},
+                {id: "1046", pref: 0.5, topic: "Performing Arts", checked: false},
+                {id: "1039", pref: 0.5, topic: "Music", checked: false},
+                {id: "1016", pref: 0.5, topic: "Religion", checked: false},
+                {id: "1142", pref: 0.5, topic: "Architecture", checked: false},
+                {id: "1057", pref: 0.5, topic: "Opinion", checked: false},
+                {id: "1138", pref: 0.5, topic: "Television", checked: false},
+                {id: "1025", pref: 0.5, topic: "Environment", checked: false},
+                {id: "1046", pref: 0.5, topic: "Performing Arts", checked: false},
 		];
 		//TODO: show popup
 	}
@@ -67,7 +93,10 @@ var exit = function() {
 		localStorage.setItem('prefs', JSON.stringify(prefs));
 	}
 	if (storyQueue) {
-			localStorage.setItem('storyQueue', JSON.stringify(storyQueue));
+		localStorage.setItem('storyQueue', JSON.stringify(storyQueue));
+	}
+        if (firstTime) {
+		localStorage.setItem('firstTime', JSON.stringify(firstTime));
 	}
 }
 
