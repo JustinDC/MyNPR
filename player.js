@@ -88,3 +88,7 @@ function addStoryToUI(story) {
     $("#news4").html(storyQueue[4].title);
     $("#news5").html(storyQueue[5].title);
 }
+
+function clickedPref(element) {
+    alert(element.html());
+}

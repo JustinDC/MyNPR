@@ -33,6 +33,10 @@ button { border:0;}
     margin: 0 auto;
     color: white;
 }
+#header a{
+    color:white;
+    text-decoration:none;
+}
 #header_title {
     width: 50%; height: 15%; float:left;
     padding-left:10%; padding-right:10%; 
@@ -84,16 +88,14 @@ button { border:0;}
     position:relative; top: 15%;
     width: 80%; padding-left:10%; padding-right:10%;
 }
-.queue_item span {
+.queue_itemText {
     position:relative; top: 25%;
-    width: auto; padding-left:5%; padding-right:5%;
-
-    transition-property: text-align;
-    transition-duration: 500ms;
+    width: 100%; padding-left:5%; padding-right:5%;
     overflow: hidden; white-space: nowrap;
+    text-overflow: ellipsis;
     text-align:left;
 }
-.queue_item span:hover {
+.queue_item:hover > span {
     text-align:right;
 }
 
@@ -144,4 +146,21 @@ button { border:0;}
     padding-left:2.5%; padding-right:2.5%;
     padding-top:2.5%; padding-bottom: 2.5%;
     float:left;
+}
+
+#preferences {
+    width:100%;
+}
+
+.preference {
+    width: 100px; height: 100px;
+    float: left; margin:15px;
+    border-radius: 50%;
+    background: rgba(96, 96, 96, 0.7);
+    text-align: center;
+    line-height: 100px;
+    color:white;
+    
+    font-family: "Lato", "Lucida Sans Unicode", "Times New Roman", Times, serif;
+    font-size: 15px;
 }
