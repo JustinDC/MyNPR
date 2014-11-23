@@ -89,6 +89,8 @@ function addStoryToUI(story) {
     $("#news5").html(storyQueue[5].title);
 }
 
-function clickedPref(element) {
-    alert(element.html());
-}
+function clickedModal() {
+    $("#prefModal").fadeTo("medium",0,function() {
+        $("#prefModal").hide();
+    });
+};

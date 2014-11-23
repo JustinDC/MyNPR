@@ -1,12 +1,11 @@
-var prefs;
 var storyQueue;
 
 var main = function() {
 	prefs = JSON.parse(localStorage.getItem('prefs'));
 	if (!prefs) { //first time usage
 		prefs = [
-		{id: "1006", pref: 0.5}, //economy
-		{id: "1045", pref: 0.5}, //movies
+		{id: "1006", pref: 0.5, topic: "Economy", checked: false}, //economy
+		{id: "1045", pref: 0.5, topic: "Movies", checked: false}, //movies
 		];
 		//TODO: show popup
 	}
@@ -23,15 +22,44 @@ var main = function() {
 	}
 	else {
 		var audio = document.getElementById("player_audio");
-    audio.src = storyQueue[0].mp3link;
-    audio.load();
+                if (audio !== null) {
+                    audio.src = storyQueue[0].mp3link;
+                    audio.load();
+                }
+        }
     $("#news0").html(storyQueue[0].title);
     $("#news1").html(storyQueue[1].title);
     $("#news2").html(storyQueue[2].title);
     $("#news3").html(storyQueue[3].title);
     $("#news4").html(storyQueue[4].title);
     $("#news5").html(storyQueue[5].title);
-	}
+
+    var prefDiv = document.getElementById("preferences");
+    if (prefDiv !== null) {
+        for (var i = 0; i < prefs.length; i++) {
+            $("#preferences").html($("#preferences").html()+"<div id=\""+i+"\" class=\"preference\">"+prefs[i].topic+"</div>");
+            var prefElement = document.getElementById(parseInt(i));
+            if (prefs[i].checked) {
+                prefElement.style.backgroundColor = "white";
+                prefElement.style.color = "black";
+            } else {
+                prefElement.style.backgroundColor = "rgba(96, 96, 96, 0.7)";
+                prefElement.style.color = "white";
+            }
+           console.log(prefs[i].checked);
+        }
+        $(".preference").on("click", function() {
+                if (!prefs[parseInt(this.id)].checked) {
+                    this.style.backgroundColor = "white";
+                    this.style.color = "black";
+                    prefs[parseInt(this.id)].checked = true;
+                } else {
+                    this.style.backgroundColor = "rgba(96, 96, 96, 0.7)";
+                    this.style.color = "white";
+                    prefs[parseInt(this.id)].checked = false;
+                }
+            });
+    }
 }
 
 var exit = function() {
