@@ -15,7 +15,7 @@ var main = function() {
                 {id: "1004", pref: 0.5, topic: "World News", checked: false},
                 {id: "1014", pref: 0.5, topic: "Politics", checked: false},
                 {id: "1006", pref: 0.5, topic: "Business", checked: false},
-                {id: "1019", pref: 0.5, topic: "Technlogy", checked: false},
+                {id: "1019", pref: 0.5, topic: "Technology", checked: false},
                 {id: "1007", pref: 0.5, topic: "Science", checked: false},
                 {id: "1128", pref: 0.5, topic: "Health", checked: false},
                 {id: "1013", pref: 0.5, topic: "Education", checked: false},
@@ -31,7 +31,6 @@ var main = function() {
                 {id: "1057", pref: 0.5, topic: "Opinion", checked: false},
                 {id: "1138", pref: 0.5, topic: "Television", checked: false},
                 {id: "1025", pref: 0.5, topic: "Environment", checked: false},
-                {id: "1046", pref: 0.5, topic: "Performing Arts", checked: false},
 		];
 		//TODO: show popup
 	}
@@ -53,35 +52,37 @@ var main = function() {
                     audio.load();
                 }
         }
-    $("#news0").html(storyQueue[0].title);
-    $("#news1").html(storyQueue[1].title);
-    $("#news2").html(storyQueue[2].title);
-    $("#news3").html(storyQueue[3].title);
-    $("#news4").html(storyQueue[4].title);
-    $("#news5").html(storyQueue[5].title);
+    var newsQueue = document.getElementById("queue");
+    if (newsQueue !== null) {
+        $("#header_title").html(storyQueue[0].title);
+        $("#news1").html(storyQueue[1].title);
+        $("#news2").html(storyQueue[2].title);
+        $("#news3").html(storyQueue[3].title);
+        $("#news4").html(storyQueue[4].title);
+        $("#news5").html(storyQueue[5].title);
+    }
 
     var prefDiv = document.getElementById("preferences");
     if (prefDiv !== null) {
         for (var i = 0; i < prefs.length; i++) {
             $("#preferences").html($("#preferences").html()+"<div id=\""+i+"\" class=\"preference\">"+prefs[i].topic+"</div>");
             var prefElement = document.getElementById(parseInt(i));
+            $(prefElement).height($(prefElement).width());
             if (prefs[i].checked) {
-                prefElement.style.backgroundColor = "white";
-                prefElement.style.color = "black";
+                prefElement.style.backgroundColor = "#596EAE";
             } else {
                 prefElement.style.backgroundColor = "rgba(96, 96, 96, 0.7)";
-                prefElement.style.color = "white";
             }
            console.log(prefs[i].checked);
         }
         $(".preference").on("click", function() {
                 if (!prefs[parseInt(this.id)].checked) {
-                    this.style.backgroundColor = "white";
-                    this.style.color = "black";
+                    this.style.backgroundColor = "#596EAE";
+                    prefs[parseInt(this.id)].pref += 5;
                     prefs[parseInt(this.id)].checked = true;
                 } else {
                     this.style.backgroundColor = "rgba(96, 96, 96, 0.7)";
-                    this.style.color = "white";
+                    prefs[parseInt(this.id)].pref -= 5;
                     prefs[parseInt(this.id)].checked = false;
                 }
             });

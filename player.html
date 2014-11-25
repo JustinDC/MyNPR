@@ -30,10 +30,10 @@ and open the template in the editor.
             </div>
             
         </div>
-        <div id="header">
-            <a class="header_nav header_navLeft" href="preferences.html"><span class="typcn typcn-arrow-left"></span></a>
+        <div id="header_player">
             <div id="header_title">My NPR</div>
-            <div class="header_nav header_navRight"><span class="typcn typcn-arrow-right"></span></div>
+            <a class="header_nav header_navRight" href="preferences.html"><span class="typcn typcn-cog"></span></a>
+            <input type="range" id="media_bar" min='0' max='100' value='0'>
         </div>
         <div id="queue">
             <div class="queue_header"><span>Upcoming</span></div>
@@ -45,9 +45,6 @@ and open the template in the editor.
         </div>
         <div id="player">
             <audio id="player_audio"></audio>
-            <div id="player_bar">
-                <div id="player_LoadedBar"><div id="news0">Loading...</div></div><div id="player_ProgressBar"></div>
-            </div>
             <div id="player_controls">
                 <a class="player_btn"><span class="typcn typcn-thumbs-down" onclick="clickedDislike()"></span></a>
                 <a class="player_btn" id="player_btnLike"><span class="typcn typcn-thumbs-up" onclick="clickedLike_TurnOn()"></span></a>

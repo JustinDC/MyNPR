@@ -8,8 +8,9 @@ var thumbsUp = 0;
 
 $(document).ready(function() {
     var audio = document.getElementById("player_audio");
-    audio.addEventListener('timeupdate',function (){
-        $("#player_ProgressBar").width(audio.currentTime*100/audio.duration+"%");
+    audio.addEventListener('timeupdate',updateProgressBar, false);
+    $("#media_bar").bind("change", function() {
+        audio.currentTime = ($(this).val()/100)*audio.duration;
     });
     audio.addEventListener('ended',function (){
         feedback(storyQueue[0], 1+thumbsUp);
@@ -24,6 +25,11 @@ $(document).ready(function() {
     });
 });
 
+function updateProgressBar() {
+    var audio = document.getElementById("player_audio");
+    $("#media_bar").val(audio.currentTime*100/audio.duration);
+}
+
 function clickedPlay() {
     var audio = document.getElementById("player_audio");
     $("#player_btnPlay").html("<span class=\"typcn typcn-media-pause\" onclick=\"clickedPause()\"></span>");
@@ -34,6 +40,7 @@ function clickedPause() {
     var audio = document.getElementById("player_audio");
     $("#player_btnPlay").html("<span class=\"typcn typcn-media-play\" onclick=\"clickedPlay()\"></span>");
     audio.pause();
+    updateProgressBar();
 };
 
 function clickedForward() {
@@ -55,7 +62,7 @@ function clickedRewind() {
 
 function clickedLike_TurnOn() {
     thumbsUp = 0.2;
-    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" style=\"color:#E66916; background: white; border-radius: 10px; overflow: hidden;\" onclick=\"clickedLike_TurnOff()\"></span>");
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" style=\"color:white; background: #404040; border-radius: 10px; overflow: hidden;\" onclick=\"clickedLike_TurnOff()\"></span>");
 };
 function clickedLike_TurnOff() {
     thumbsUp = 0;
@@ -81,7 +88,7 @@ function addStoryToUI(story) {
         audio.src = storyQueue[0].mp3link;
         audio.load();
     }
-    $("#news0").html(storyQueue[0].title);
+    $("#header_title").html(storyQueue[0].title);
     $("#news1").html(storyQueue[1].title);
     $("#news2").html(storyQueue[2].title);
     $("#news3").html(storyQueue[3].title);
