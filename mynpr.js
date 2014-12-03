@@ -34,7 +34,7 @@ var main = function() {
 		];
 		//TODO: show popup
 	}
-
+        
 	storyQueue = JSON.parse(localStorage.getItem('storyQueue'));
 	if (!storyQueue) { //first time usage
 		storyQueue = [];
@@ -76,6 +76,7 @@ var main = function() {
            console.log(prefs[i].checked);
         }
         $(".preference").on("click", function() {
+		localStorage.removeItem("storyQueue"); storyQueue = null;
                 if (!prefs[parseInt(this.id)].checked) {
                     this.style.backgroundColor = "#596EAE";
                     prefs[parseInt(this.id)].pref += 5;
