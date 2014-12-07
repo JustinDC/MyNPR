@@ -32,7 +32,15 @@ and open the template in the editor.
         </div>
         <div id="header_player">
             <div id="header_title">My NPR</div>
-            <a class="header_nav header_navRight" href="preferences.html"><span class="typcn typcn-cog"></span></a>
+            <a class="header_nav header_navRight" href="preferences.html"><span class="typcn typcn-cog"></span></a> 
+            <audio id="player_audio"></audio>
+            <div id="player_controls">
+                <a class="player_btn"><span class="typcn typcn-thumbs-down" onclick="clickedDislike()"></span></a>
+                <a class="player_btn" id="player_btnLike"><span class="typcn typcn-thumbs-up" onclick="clickedLike_TurnOn()"></span></a>
+                <a class="player_btn"><span class="typcn typcn-media-rewind" onclick="clickedRewind()"></span></a>
+                <a class="player_btn" id="player_btnPlay"><span class="typcn typcn-media-play" onclick="clickedPlay()"></span></a>
+                <a class="player_btn"><span class="typcn typcn-media-fast-forward" onclick="clickedForward()"></span></a>
+            </div>
             <input type="range" id="media_bar" min='0' max='100' value='0'>
         </div>
         <div id="queue">
@@ -43,15 +51,8 @@ and open the template in the editor.
             <div class="queue_item"><span id="news4" class="queue_itemText">Loading...</span></div>
             <div class="queue_item"><span id="news5" class="queue_itemText">Loading...</span></div>
         </div>
-        <div id="player">
-            <audio id="player_audio"></audio>
-            <div id="player_controls">
-                <a class="player_btn"><span class="typcn typcn-thumbs-down" onclick="clickedDislike()"></span></a>
-                <a class="player_btn" id="player_btnLike"><span class="typcn typcn-thumbs-up" onclick="clickedLike_TurnOn()"></span></a>
-                <a class="player_btn"><span class="typcn typcn-media-rewind" onclick="clickedRewind()"></span></a>
-                <a class="player_btn" id="player_btnPlay"><span class="typcn typcn-media-play" onclick="clickedPlay()"></span></a>
-                <a class="player_btn"><span class="typcn typcn-media-fast-forward" onclick="clickedForward()"></span></a>
-            </div>
+        <div id="footer">
+            My NPR
         </div>
     </body>
 </html>

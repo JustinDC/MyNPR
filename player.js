@@ -57,12 +57,12 @@ function clickedForward() {
 
 function clickedRewind() {
     var audio = document.getElementById("player_audio");
-    audio.currentTime -= 10;
+    audio.currentTime = 0;
 };
 
 function clickedLike_TurnOn() {
     thumbsUp = 0.2;
-    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" style=\"color:white; background: #404040; border-radius: 10px; overflow: hidden;\" onclick=\"clickedLike_TurnOff()\"></span>");
+    $("#player_btnLike").html("<span class=\"typcn typcn-thumbs-up\" style=\"color:white; background: #596EAE; border-radius: 10px; overflow: hidden;\" onclick=\"clickedLike_TurnOff()\"></span>");
 };
 function clickedLike_TurnOff() {
     thumbsUp = 0;
