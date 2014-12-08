@@ -16,7 +16,7 @@ body {
     top: 0; bottom: 0;
     
     background: url("images/background.jpg");
-    background-size:cover; background-position: 0% 35%; 
+    background-size:cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
